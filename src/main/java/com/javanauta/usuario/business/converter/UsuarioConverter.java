@@ -20,7 +20,7 @@ public class UsuarioConverter {
                 .email(usuarioDTO.getEmail())
                 .senha(usuarioDTO.getSenha())
                 .enderecos(paraListaEndereco(usuarioDTO.getEnderecos()))
-                .telefones(paraListaTelefone(usuarioDTO.getTelefones()))
+                .telefones(paraListaTelefone(usuarioDTO.getTelefones()  ))
                 .build();
     }
 
@@ -53,9 +53,6 @@ public class UsuarioConverter {
                 .ddd(telefoneDTO.getDdd())
                 .build();
     }
-
-
-
 
     public UsuarioDTO paraUsuarioDTO(Usuario usuarioDTO){
         return UsuarioDTO.builder()
@@ -96,4 +93,16 @@ public class UsuarioConverter {
                 .ddd(telefoneDTO.getDdd())
                 .build();
     }
+
+    public Usuario updateUsuario(UsuarioDTO usuarioDTO, Usuario entity){
+        return Usuario.builder()
+                .nome(usuarioDTO.getNome() != null ? usuarioDTO.getNome() : entity.getNome())
+                .id(entity.getId())
+                .senha(usuarioDTO.getSenha() != null ? usuarioDTO.getSenha() : entity.getSenha())
+                .email(usuarioDTO.getEmail() !=null ? usuarioDTO.getEmail() : entity.getEmail() )
+                .enderecos(entity.getEnderecos())
+                .telefones(entity.getTelefones())
+                .build();
+    }
+
 }
